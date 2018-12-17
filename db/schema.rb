@@ -10,7 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_13_074217) do
+ActiveRecord::Schema.define(version: 2018_12_17_100940) do
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "cart_id"
+    t.integer "item_id"
+    t.integer "cd_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "carts", force: :cascade do |t|
+    t.string "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cds", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.integer "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -18,6 +49,7 @@ ActiveRecord::Schema.define(version: 2018_12_13_074217) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
+    t.integer "cart_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

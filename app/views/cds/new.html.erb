@@ -1,0 +1,10 @@
+<h1>NEW CD</h1>
+	<%= form_for(@cd) do |f|%>
+		<%=f.label :name %>
+		<%=f.text_field :name %>
+		<%=f.label :price %>
+		<%=f.text_field :price %>
+		<%=f.label :artist_id %>
+		<%=f.number_field :artist_id %>
+		<%=f.submit '作成' %>
+	<% end %>

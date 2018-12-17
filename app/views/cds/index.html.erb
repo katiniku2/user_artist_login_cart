@@ -1,0 +1,29 @@
+<h1>商品一覧</h1>
+<table>
+	<tr>
+		<th>　　　　　商品名　　　　　　　　　　　</th>
+		<th>　　　　　金額　　　　　　　　　　　　</th>
+		<th>　　　　　Artist.id　　　　　</th>
+	</tr>
+
+	<% @cds.each do |cd| %>
+	<tr>
+		<th><%= cd.name %></th>
+		<th>¥<%= cd.price %></th>
+		<th><%= cd.artist_id %></th>
+		<th><%= button_to 'カート', add_item_path(cd_id: cd),method: :post %></th>
+	</tr>
+	<% end %>
+	
+	<% @items.each do |item| %>
+	<tr>
+		<th><%= item.name %></th>
+		<th>¥<%= item.price %></th>
+		<th><%= item.artist_id %></th>
+		<th><%= button_to 'カート', add_item_path(item_id: item),method: :post %></th>
+	</tr>
+	<% end %>
+</table>
+<%= link_to '新規作成(CD)', new_cd_path %>
+
+<%= link_to '新規作成(ITEM)', new_item_path %>
