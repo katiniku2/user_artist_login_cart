@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
   def new
     @user = User.new
   end
@@ -36,4 +37,5 @@ class SessionsController < ApplicationController
     log_out_artist
     redirect_to root_url
   end
+
 end
