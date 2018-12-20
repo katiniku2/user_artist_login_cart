@@ -1,0 +1,24 @@
+<h1>Artists</h1>
+
+      <table class="table">
+        <thead>
+    		<tr>
+    			<th>image</th>
+    			<th>name</th>
+    			<th></th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @search_artists.each do |artist| %>
+          <tr>
+          <td><p>アーティスト画像</p></td>
+          <td><%= artist.name %></td>
+          <td><%= link_to "Show", root_path %></td>
+          <td><% if current_user.try(:admin?) %>
+            <%= link_to "delete", artist, method: :delete, data: { confirm: "You sure?" } %>
+            <% end %>
+          </td>
+    		</tr>
+        <% end %>
+        </tbody>
+    	</table>

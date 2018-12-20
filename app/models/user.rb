@@ -10,5 +10,6 @@ class User < ApplicationRecord
 	validates :password, presence: true, length: {minimum: 6}
 
 	has_one :cart
-
+	has_many :favorites
+	has_many :artists, through: :favorites
 end

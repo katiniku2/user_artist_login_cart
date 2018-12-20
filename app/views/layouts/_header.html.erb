@@ -6,10 +6,10 @@
 				<li><%= link_to "Home",   root_path %></li>
 				<li><%= link_to "Help",   help_path %></li>
 				<% if logged_in? %>
-					<li><%= link_to "Users", users_path %></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Account <b class="caret"></b></a>
+				<li><%= link_to "Users", users_path %></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Account <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><%= link_to "Profile", current_user %></li>
 							<li><%= link_to "Settings", '#' %></li>
@@ -19,11 +19,20 @@
 							</li>
 						</ul>
 					</li>
-				<% else %>
+					<% else %>
 					<li><%= link_to "Log in", login_path %></li>
 					<li><%= link_to "アーティストの方はこちらへ", login_artist_path %></li>
-				<% end %>
-			</ul>
-		</nav>
+					<% end %>
+				</ul>
+ 				<dl class="searchbox navbar-right">
+					<%= search_form_for @search, url: artists_path do |f| %>
+					<dt>
+						<%= f.text_field :name_cont, placeholder: 'キーワード' %>
+					</dt>
+					<dd>
+						<%= f.submit ("Search"), class: 'search-btn' %></dd>
+						<% end %>
+					</dl>
+			</nav>
 	</div>
 </header>

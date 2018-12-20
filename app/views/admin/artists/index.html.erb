@@ -1,0 +1,23 @@
+<h1>登録済みのアーティスト一覧</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>名前</th>
+      <th>登録日</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @artists.each do |artist| %>
+      <tr>
+        <td><%= artist.id %></td>
+    	<td><%= artist.name %></td>
+    	<td><%= artist.created_at %></td>
+      <td><% if current_user.try(:admin?) %>
+            <%= link_to "delete", artist, method: :delete, data: { confirm: "You sure?" } %>
+            <% end %>
+            </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

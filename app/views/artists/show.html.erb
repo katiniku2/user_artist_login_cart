@@ -1,3 +1,23 @@
-<h1><% @artist.name %></h1>
-<h2>Welcome to artist_page</h2>
+<% provide(:title, @artist.name) %>
+<div class="row">
+	<aside class="col-md-4">
+		<section class="user_info">
+			<h1>
+				<%= gravatar_for @artist %>
+				<%= @artist.name %>
+				<p><%= session.to_h %></p>
+			</h1>
+		</section>
+	</aside>
+	<%= link_to '商品一覧', cds_path %>
+</div>
+
+<% if false %>
+<% if !Favorite.exists?(user_id: current_user.id, artist_id: artist.id) %>
+    <%= link_to "お気に入り", artist_add_path(artist), method: :post %>
+    <% else %>
+    <%= link_to "お気に入り解除", artist_add_path(artist), method: :delete %>
+<% end %>
+<% end %>
+
 <%= link_to "Log out", logout_artist_path, method: :delete %>

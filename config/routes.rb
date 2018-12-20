@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'posts/search'
+  get 'favorites/create'
+  get 'favorites/destroy'
   root		'static_pages#home'
   post    '/add_item' ,       to: 'carts#add_item' ,as: 'add_item'
   get     '/help',            to: 'static_pages#help'
@@ -20,6 +23,17 @@ Rails.application.routes.draw do
   resources :carts, only: [:index,:show]
   resources :cds, only: [:index,:new,:create]
   resources :items, only: [:index,:new,:create]
+  resources :artists do
+    post '/artists/:artist_id/add' => 'favorites#create'
+    delete '/artists/:artist_id/add' => 'favorites#destroy'
+  end
+
+  get 'search', to:'application#set_search'
+
+  namespace :admin do
+    resources :users, only: [:index, :destroy]
+    resources :artists, only: [:index, :destroy]
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

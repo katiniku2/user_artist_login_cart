@@ -8,4 +8,19 @@ class Artist < ApplicationRecord
 
 	has_secure_password
 	validates :password, presence: true, length: {minimum: 6}
+
+	has_many :favorites
+	has_many :users, through: :favorites
+
+	# scope :search_by_keyword, -> (keyword) {
+	# 	where("artists.name LIKE :keyword", "%#{sanitize_sql_like(keyword)}%") if keyword.present?
+	# }
+
+	def self.search(search)
+		if search
+		    where(['name LIKE ?', "%#{search}"])
+		else
+			all
+		end
+	end
 end

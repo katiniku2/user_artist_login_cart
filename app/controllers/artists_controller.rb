@@ -18,6 +18,10 @@ class ArtistsController < ApplicationController
 		@artist = Artist.find(params[:id])
 	end
 
+	def index
+		@artists = Artist.all
+	end
+
 private
 	def artist_params
 		params.require(:artist).permit(:name, :email, :password, :password_confirmation)
